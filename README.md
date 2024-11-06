@@ -3,7 +3,9 @@
 This project aims to develop a predictive system for HS (Harmonized System) codes using a Streamlit interface. The model leverages natural language processing techniques and embeddings to predict HS codes based on descriptions, particularly for international shipping manifests. The repository includes data extraction, model training, and a Streamlit interface to facilitate user interaction.
 
 This project aims to develop an advanced system for predicting the 6-digit HTS (Harmonized Tariff Schedule) code, employing natural language processing (NLP) techniques to analyze and understand textual inputs provided by the user. Leveraging the semantic richness and inferential capabilities of state-of-the-art language models, this system is designed to optimize and automate the product classification process in international trade.
+
 ![image](https://github.com/user-attachments/assets/b06359a6-f528-4555-8c86-3b3fcc24ac22)
+
 The system is able to understand meaningful keywords relevant for the freight industry, removing on a very smart way "stopwords" that are not relevant on this context.
 
 # Introduction
