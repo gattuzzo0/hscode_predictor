@@ -1,4 +1,23 @@
-# Streamlit app for HS Code prediction
+"""
+HS Code Prediction App
+
+This script is a Streamlit application designed to assist companies in identifying and classifying products accurately using 
+the Harmonized System (HS) code based on product descriptions. Key features include:
+
+- User inputs a product description, focusing on characteristics such as type, use, material, and dimensions.
+- The script uses a combination of custom CSS styles for an enhanced user interface.
+- Natural Language Processing (NLP) pipelines powered by LangChain and Hugging Face embeddings are used for keyword extraction and translation (if needed).
+- The retrieval system, using Chroma as a vector store, retrieves HS codes based on similarity to the input description.
+- Outputs the most relevant HS code with a high relevance score, along with supporting source documents for verification.
+
+Main Components:
+- Keyword extraction using language model (LLM).
+- Translation prompt (for handling Spanish and English inputs).
+- HS code retrieval based on contextual matching from the shipping manifest description.
+- Streamlit layout for an intuitive and visually appealing interface.
+"""
+
+
 
 import os, re
 import streamlit as st
@@ -16,105 +35,6 @@ import torch
 # Suppress all warnings
 warnings.filterwarnings("ignore")
 
-# Check for CUDA availability
-#if torch.cuda.is_available():
-#    device = torch.device("cuda")
-#    st.write("CUDA is available. Device:", torch.cuda.get_device_name(0))
-#else:
-#    st.write("CUDA is not available. Using CPU.")
-
-# CSS for a more visually appealing table
-table_css = """
-<style>
-    table {
-        width: 130%;
-        border-collapse: collapse;
-        margin-left: -40; /* Align table to the left */
-        text-align: left; /* Text alignment inside the table */
-    }
-    th, td {
-        padding: 10px;
-        border: 1px solid #ddd;
-        text-align: left;
-    }
-    th {
-        background-color: #f2f2f2;
-        font-weight: bold;
-    }
-    tr:nth-child(even) {
-        background-color: #f9f9f9;
-    }
-    tr:hover {
-        background-color: #f1f1f1;
-    }
-</style>
-"""
-# Custom CSS for styling the title
-title_css = """
-<style>
-    .title-style {
-        font-size: 2.5em;
-        color: ##000033;  /* Custom color for the title */
-        font-weight: 700;
-        text-align: center;
-        padding: 3px;
-        margin-top: 0;
-        background-color: #f0f4f8;  /* Light background behind title */
-        border-radius: 8px;
-        box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);  /* Subtle shadow */
-    }
-</style>
-"""
-
-# Custom CSS for styling the button
-button_css = """
-<style>
-    .stButton>button {
-        color: ##666633;
-        background-color: #CCFFCC;  /* Custom button color */
-        font-size: 1.2em;
-        font-weight: bold;
-        padding: 10px 20px;
-        border-radius: 8px;
-        border: none;
-        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);  /* Subtle shadow */
-        transition: background-color 0.3s ease, transform 0.2s ease;  /* Smooth transition */
-    }
-    .stButton>button:hover {
-        background-color: #CCCC66;  /* Darker shade on hover */
-        transform: scale(1.05);  /* Slightly larger on hover */
-    }
-</style>
-"""
-
-# Define CSS custom styles
-st.markdown(
-    """
-    <style>
-    .text-style {
-        color: #A9A9A9; /* Gris claro */
-        font-size: 16px;
-        font-style: italic; /* Cursiva */
-        font-weight: normal;
-        text-align: justify;
-        margin-top: 10px;
-    }
-        .highlighted-selection {
-        background-color: #e0ffe0; /* Light green background */
-        color: #155724; /* Dark green text for readability */
-        font-size: 24px;
-        font-weight: bold;
-        padding: 8px;
-        border: 2px solid #28a745; /* Green border */
-        border-radius: 8px;
-        box-shadow: 0px 4px 8px rgba(0, 128, 0, 0.2); /* Subtle shadow for effect */
-        text-align: center;
-        margin-top: 6px;
-    }
-    </style>
-    """, 
-    unsafe_allow_html=True
-)
 
 def extract_keywords_from_query(query):
     # Step 1: Define the keyword extraction prompt and LLMChain
@@ -172,13 +92,14 @@ def extract_keywords_from_query_in_english(query):
     keywords_response = keyword_chain.run({"query": query})
     return keywords_response
 
-print(f"CUDA Available: {torch.cuda.is_available()}")
-if torch.cuda.is_available():
-    print(f"Device Name: {torch.cuda.get_device_name(0)}")
-    device = torch.device("cuda")
-else:
-    device = torch.device("cpu")
-
+#In case GPU is needed to be activated
+#print(f"CUDA Available: {torch.cuda.is_available()}")
+#if torch.cuda.is_available():
+#    print(f"Device Name: {torch.cuda.get_device_name(0)}")
+#    device = torch.device("cuda")
+#else:
+#    device = torch.device("cpu")
+#model_kwargs = {'device': device , 'trust_remote_code': True}
 
 # Set hyperparameters
 index_test_name = 'Alibaba'
@@ -193,8 +114,7 @@ persistent_dir = os.path.abspath(os.path.join(script_dir, '..', 'index', index_t
 
 model = AutoModel.from_pretrained(embed_model, trust_remote_code=True) 
 model_name = embed_model
-model_kwargs = {'device': 'cpu' , 'trust_remote_code': True}
-#model_kwargs = {'device': device , 'trust_remote_code': True}
+model_kwargs = {'device': 'cpu' , 'trust_remote_code': True}     #In case you need to enable GPU, comment this line
 encode_kwargs = {'normalize_embeddings': True}
 
 embedding_model_via_Transformers_class = HuggingFaceEmbeddings(
@@ -262,11 +182,9 @@ llm_chain = RetrievalQAWithSourcesChain.from_chain_type(
         },
 )
 
-
-# Add CSSs to the page
-st.markdown(table_css, unsafe_allow_html=True)
-st.markdown(title_css, unsafe_allow_html=True)
-st.markdown(button_css, unsafe_allow_html=True)
+# Load CSS file for nicer styling
+with open("style.css") as f:
+    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 # Streamlit app layout
 st.markdown('<h1 class="title-style">HS Code App</h1>', unsafe_allow_html=True)
@@ -296,20 +214,19 @@ query = st.text_area("Escriba aquí la descripción:")
 if st.button("Predict HS Code"):
     if query:
         with st.spinner("Procesando..."):
-            #Perform Chain Of Thoughts
+            #Perform simple Chain Of Thoughts (Extract keywords, Translate, Extract translated keywords -> Run)
             # Extract keywords
             keywords = extract_keywords_from_query(query)
-
             # Translate if necessary
             translated_query = translate_query(keywords)
-
             # Extract translated keywords
             translated_keywords = extract_keywords_from_query_in_english(translated_query)
 
-            # Retrieve HS code
+            # Run LLMChain
             result = llm_chain({"question": translated_keywords, "summaries": context})
 
             # Optional
+            # Display what is looking for actually on the VectorDatabase
             #st.write(" On the backend, I'm looking for....")            
             st.markdown(
             f"""
@@ -319,7 +236,7 @@ if st.button("Predict HS Code"):
             """, 
             unsafe_allow_html=True
                     )
-            
+            # Display recommended HS Code on a nice HTML Title
             st.write("### HS Code apropiado:")
             st.markdown(
                         f"""
@@ -329,8 +246,7 @@ if st.button("Predict HS Code"):
                         """, 
                         unsafe_allow_html=True
                     )
-
-            # Display source documents if available
+            # Display source documents if available on a nice HTML Table
             if "source_documents" in result:
                 st.write("### HS Codes con mayor similitud:")
             

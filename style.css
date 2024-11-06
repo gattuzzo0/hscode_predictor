@@ -1,0 +1,77 @@
+/* styles.css */
+
+/* Styling for table */
+table {
+    width: 130%;
+    border-collapse: collapse;
+    margin-left: -40px;
+    text-align: left;
+}
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Styling for title */
+.title-style {
+    font-size: 2.5em;
+    color: #000033;
+    font-weight: 700;
+    text-align: center;
+    padding: 3px;
+    margin-top: 0;
+    background-color: #f0f4f8;
+    border-radius: 8px;
+    box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling for button */
+.stButton>button {
+    color: #666633;
+    background-color: #CCFFCC;
+    font-size: 1.2em;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.stButton>button:hover {
+    background-color: #CCCC66;
+    transform: scale(1.05);
+}
+
+/* Additional custom text style */
+.text-style {
+    color: #A9A9A9;
+    font-size: 16px;
+    font-style: italic;
+    font-weight: normal;
+    text-align: justify;
+    margin-top: 10px;
+}
+
+.highlighted-selection {
+    background-color: #e0ffe0;
+    color: #155724;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 8px;
+    border: 2px solid #28a745;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 128, 0, 0.2);
+    text-align: center;
+    margin-top: 6px;
+}
