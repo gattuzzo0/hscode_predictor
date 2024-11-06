@@ -153,12 +153,24 @@ def translate_query(query):
     keywords_response = keyword_chain.run({"query": query})
     return keywords_response
 
-def process_with_AI(query):
-    keywords_from_query = extract_keywords_from_query(query)
-    translated_to_english = translate_query(keywords_from_query)
-    #Second keyword extraction, but now in english
-    final_query = extract_keywords_from_query(translated_to_english)
-    return final_query
+def extract_keywords_from_query_in_english(query):
+    # Step 1: Define the keyword extraction prompt and LLMChain
+    # Prompt to ask the LLM to extract relevant keywords
+    keyword_extraction_template = (
+        """You're a freight inspector, your job is to identify what are the most relevant keywords to identify the proper HS Code later:
+            Text: {query}
+            Respond ONLY with ENGLISH keywords you think are most relevant to identify the content of that container, 
+            as a whole sentence, NO OTHER TEXT"""
+    )
+
+    keyword_prompt = PromptTemplate(template=keyword_extraction_template, input_variables=["query"])
+
+    # Initialize LLM for keyword extraction
+    keyword_chain = LLMChain(llm=llm_model, prompt=keyword_prompt)
+
+    # Extract keywords by running the LLM chain
+    keywords_response = keyword_chain.run({"query": query})
+    return keywords_response
 
 print(f"CUDA Available: {torch.cuda.is_available()}")
 if torch.cuda.is_available():
@@ -292,7 +304,7 @@ if st.button("Predict HS Code"):
             translated_query = translate_query(keywords)
 
             # Extract translated keywords
-            translated_keywords = extract_keywords_from_query(translated_query)
+            translated_keywords = extract_keywords_from_query_in_english(translated_query)
 
             # Retrieve HS code
             result = llm_chain({"question": translated_keywords, "summaries": context})
