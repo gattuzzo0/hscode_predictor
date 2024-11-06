@@ -3,11 +3,11 @@
 This project aims to develop a predictive system for HS (Harmonized System) codes using a Streamlit interface. The model leverages natural language processing techniques and embeddings to predict HS codes based on descriptions, particularly for international shipping manifests. The repository includes data extraction, model training, and a Streamlit interface to facilitate user interaction.
 
 # Brief Description of Models used
-# Alibaba-NLP/gte-large-en-v1.5: 
+## Alibaba-NLP/gte-large-en-v1.5: 
 This sentence transformer model, developed by Alibaba, is designed to produce high-quality embeddings for English text. It is based on the GTE (General Text Embedding) architecture and trained to generate dense vector 
 representations that capture semantic meanings, making it particularly useful for tasks requiring sentence similarity and retrieval. In this project, it is used to encode HS code descriptions, enabling more accurate retrieval and matching for prediction purposes.
 
-# Llama 3.1: 
+## Llama 3.1: 
 Llama 3.1 is an advanced large language model (LLM) developed by Meta. Known for its strong performance across a range of natural language processing tasks, Llama 3.1 builds on previous versions with improvements in language understanding and generation. 
 While not directly used in this project, it’s noteworthy as a competitive model for tasks involving complex text generation, summarization, and classification. Its capabilities make it a candidate for future model iterations or expansions of this project.
 
