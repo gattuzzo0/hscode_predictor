@@ -1,7 +1,3 @@
-Here's a draft for a `README.md` file to describe your project:
-
----
-
 # Streamlit HS Codes Prediction
 
 This project aims to develop a predictive system for HS (Harmonized System) codes using a Streamlit interface. The model leverages natural language processing techniques and embeddings to predict HS codes based on descriptions, particularly for international shipping manifests. The repository includes data extraction, model training, and a Streamlit interface to facilitate user interaction.
