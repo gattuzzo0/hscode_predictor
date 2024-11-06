@@ -3,10 +3,12 @@
 This project aims to develop a predictive system for HS (Harmonized System) codes using a Streamlit interface. The model leverages natural language processing techniques and embeddings to predict HS codes based on descriptions, particularly for international shipping manifests. The repository includes data extraction, model training, and a Streamlit interface to facilitate user interaction.
 
 This project aims to develop an advanced system for predicting the 6-digit HTS (Harmonized Tariff Schedule) code, employing natural language processing (NLP) techniques to analyze and understand textual inputs provided by the user. Leveraging the semantic richness and inferential capabilities of state-of-the-art language models, this system is designed to optimize and automate the product classification process in international trade.
+![image](https://github.com/user-attachments/assets/b06359a6-f528-4555-8c86-3b3fcc24ac22)
+The system is able to understand meaningful keywords relevant for the freight industry, removing on a very smart way "stopwords" that are not relevant on this context.
 
-![image](https://github.com/user-attachments/assets/f53f0c59-6c6e-490c-b80b-68c97b78f4f5)
 # Introduction
 This project implements a Retrieval-Augmented Generation (RAG) system. RAG combines retrieval-based search techniques with text generation through natural language models. The main idea is that the generation model relies on relevant information retrieved from a knowledge base or external documents to generate more accurate and contextually appropriate responses to user queries.
+![image](https://github.com/user-attachments/assets/f53f0c59-6c6e-490c-b80b-68c97b78f4f5)
 
 ### How does RAG work?
 The RAG system consists of two main components:
