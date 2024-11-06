@@ -2,6 +2,31 @@
 
 This project aims to develop a predictive system for HS (Harmonized System) codes using a Streamlit interface. The model leverages natural language processing techniques and embeddings to predict HS codes based on descriptions, particularly for international shipping manifests. The repository includes data extraction, model training, and a Streamlit interface to facilitate user interaction.
 
+This project aims to develop an advanced system for predicting the 6-digit HTS (Harmonized Tariff Schedule) code, employing natural language processing (NLP) techniques to analyze and understand textual inputs provided by the user. Leveraging the semantic richness and inferential capabilities of state-of-the-art language models, this system is designed to optimize and automate the product classification process in international trade.
+
+By enabling intelligent interpretation of natural language descriptions, this solution not only reduces the inherent complexity of classifying products within global regulatory frameworks but also improves the accuracy and efficiency of the process. This innovative approach has the potential to transform how businesses navigate the complexities of international trade, reducing the uncertainty associated with HTS codes and facilitating regulatory compliance with exceptional precision.
+
+![image](https://github.com/user-attachments/assets/f53f0c59-6c6e-490c-b80b-68c97b78f4f5)
+# Introduction
+This project implements a Retrieval-Augmented Generation (RAG) system. RAG combines retrieval-based search techniques with text generation through natural language models. The main idea is that the generation model relies on relevant information retrieved from a knowledge base or external documents to generate more accurate and contextually appropriate responses to user queries.
+
+### How does RAG work?
+The RAG system consists of two main components:
+
+### Information Retriever:
+When a query is received, the system searches a database (such as a knowledge base or documents) to retrieve the most relevant fragments. This database is stored locally in Chromadb, where documents have been previously indexed.
+
+### Language Model Generator:
+Once the relevant fragments are retrieved, they are passed to the generator (a language model based on Transformers, such as GPT) which uses this information to generate a coherent and precise response to the initial query.
+
+### Processing Steps:
+
+User Input: The system receives a query in natural language.
+Document Retrieval: The system searches for the documents or fragments most relevant to the query.
+Incorporation of Retrieved Information: The retrieved information is fed into the language model.
+Response Generation: The model generates a final response that integrates both the context of the query and the retrieved information.
+Returning the Response to the User: The response is either a 6-digit HTS code (chapter, part, and subpart) or, if the input is too ambiguous, a suggestion of 3 possible codes.
+
 # Brief Description of Models used
 ## Alibaba-NLP/gte-large-en-v1.5: 
 This sentence transformer model, developed by Alibaba, is designed to produce high-quality embeddings for English text. It is based on the GTE (General Text Embedding) architecture and trained to generate dense vector 
