@@ -4,8 +4,6 @@ This project aims to develop a predictive system for HS (Harmonized System) code
 
 This project aims to develop an advanced system for predicting the 6-digit HTS (Harmonized Tariff Schedule) code, employing natural language processing (NLP) techniques to analyze and understand textual inputs provided by the user. Leveraging the semantic richness and inferential capabilities of state-of-the-art language models, this system is designed to optimize and automate the product classification process in international trade.
 
-By enabling intelligent interpretation of natural language descriptions, this solution not only reduces the inherent complexity of classifying products within global regulatory frameworks but also improves the accuracy and efficiency of the process. This innovative approach has the potential to transform how businesses navigate the complexities of international trade, reducing the uncertainty associated with HTS codes and facilitating regulatory compliance with exceptional precision.
-
 ![image](https://github.com/user-attachments/assets/f53f0c59-6c6e-490c-b80b-68c97b78f4f5)
 # Introduction
 This project implements a Retrieval-Augmented Generation (RAG) system. RAG combines retrieval-based search techniques with text generation through natural language models. The main idea is that the generation model relies on relevant information retrieved from a knowledge base or external documents to generate more accurate and contextually appropriate responses to user queries.
